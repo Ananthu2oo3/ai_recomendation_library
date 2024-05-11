@@ -1,44 +1,32 @@
-from flask import Flask, render_template, request, redirect, url_for, session
-from pymongo import MongoClient
+# from flask import Flask, render_template, request, redirect, url_for, session
 
-app = Flask(__name__)
-app.secret_key = 'your_secret_key'
+# app = Flask(__name__)
 
-# MongoDB connection
-client = MongoClient('mongodb://localhost:27017/')
-db = client['user_database']
-collection = db['users']
+# @app.route('/', methods=['GET'])
+# def index():
+#     return render_template('login.html')
 
-@app.route('/')
-def index():
-    if 'username' in session:
-        return redirect(url_for('dashboard'))
-    return render_template('login.html')
+# @app.route('/register', methods=['GET','POST'])
+# def register():
+    
+#     if request.method == 'POST':
 
-@app.route('/login', methods=['POST'])
-def login():
-    username = request.form['username']
-    password = request.form['password']
+#         username = request.form['username']
+#         password = request.form['password']
 
-    user = collection.find_one({'username': username, 'password': password})
+#         return redirect(url_for('login'))
 
-    if user:
-        session['username'] = username
-        return redirect(url_for('dashboard'))
-    else:
-        return render_template('login.html', error='Invalid username or password')
+#     else:    
+#         return render_template('register.html')
 
-@app.route('/dashboard')
-def dashboard():
-    if 'username' in session:
-        return render_template('dashboard.html', username=session['username'])
-    else:
-        return redirect(url_for('index'))
+# if __name__ == '__main__':
+#     app.run(debug=True)
 
-@app.route('/logout')
-def logout():
-    session.pop('username', None)
-    return redirect(url_for('index'))
+from pymongo import MongoClient 
 
-if __name__ == '__main__':
-    app.run(debug=True)
+client = MongoClient('mongodb://localhost:27017')
+db = client['library']
+collection = db['login']
+
+data = {"username": "padma", "password": "456"}
+collection.insert_one(data)
