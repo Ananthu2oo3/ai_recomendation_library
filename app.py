@@ -13,19 +13,26 @@ def index():
         return redirect(url_for('dashboard'))
     return render_template('login.html')
     
-@app.route('/login', methods=['POST'])
-def login():
-    username = request.form['username']
-    password = request.form['password']
 
-    result = collection.find_one({"username": username})
-    
-    if result and result.get('password') == password:
-        return redirect(url_for('dashboard'))
+@app.route('/login', methods=['GET','POST'])
+def login():
+    if request.method == 'POST':
+        
+        username = request.form['username']
+        password = request.form['password']
+
+        result = collection.find_one({"username": username})
+        
+        if result and result.get('password') == password:
+            return redirect(url_for('dashboard'))
+        else:
+            error = "Invalid username or password"
+            return render_template('login.html', error=error)
     
     else:
         return render_template('login.html', error='Invalid username or password')
-    
+
+
 @app.route('/register', methods=['GET','POST'])
 def register():
 
@@ -38,7 +45,7 @@ def register():
 
         collection.insert_one(data)
         # return render_template('register.html')
-        return redirect(('login'))
+        return redirect(url_for('login'))
     else:
         return render_template('register.html')
     
@@ -50,4 +57,4 @@ def dashboard():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port = '8000')
