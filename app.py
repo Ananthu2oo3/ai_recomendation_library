@@ -5,10 +5,10 @@ from util import *
 
 app = Flask(__name__)
 
-client = MongoClient('mongodb://localhost:27017')
-db = client['library']
-collection = db['login']
-
+client  = MongoClient('mongodb://localhost:27017')
+db      = client['library']
+login_db= db['login']
+book_db = db['books']
 
 @app.route('/')
 def index():
@@ -25,7 +25,7 @@ def login():
         mailid      = request.form['mailid']
         password    = request.form['password']
 
-        result      = collection.find_one({"mailid": mailid})
+        result      = login_db.find_one({"mailid": mailid})
         
         if result and result.get('password') == password:
             return redirect(url_for('dashboard'))
@@ -44,19 +44,22 @@ def register():
 
     if request.method == 'POST':
 
-        username = request.form['username']
-        mailid   = request.form['mailid']
-        phn_no   = request.form['phn_no']
-        password = request.form['password']
+        username    = request.form['username']
+        mailid      = request.form['mailid']
+        phn_no      = request.form['phn_no']
+        password    = request.form['password']
+        interests   = request.form.getlist('interests')
+
         
         data ={ 
             "username"  : username,
             "mailid"    : mailid,
             "phn_no"    : phn_no, 
-            "password"  : password
-            }
+            "password"  : password,
+            "interests" : interests
+        }
 
-        collection.insert_one(data)
+        login_db.insert_one(data)
         return redirect(url_for('login'))
     
     else:
@@ -64,9 +67,24 @@ def register():
     
     
 
-@app.route('/dashboard', methods=['GET'])
+# @app.route('/dashboard', methods=['GET'])
+# def dashboard():
+#     return render_template('dashboard.html')
+
+
+@app.route('/dashboard')
 def dashboard():
-    return render_template('dashboard.html')
+    if 'username' in session:
+        username = session['username']
+        user = book_db.find_one({'username': username})
+        user_genres = user['genres']
+
+        # Fetch books and sort them based on user genres
+        books = list(book_db.find())
+        sorted_books = sorted(books, key=lambda book: book['genre'] in user_genres, reverse=True)
+
+        return render_template('dashboard.html', username=username, books=sorted_books)
+    return redirect(url_for('login'))
 
 
 @app.route('/add_book', methods=['GET','POST'])
