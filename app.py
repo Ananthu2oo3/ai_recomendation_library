@@ -5,10 +5,11 @@ from util import *
 
 app = Flask(__name__)
 
-client  = MongoClient('mongodb://localhost:27017')
-db      = client['library']
-login_db= db['login']
-book_db = db['books']
+client          = MongoClient('mongodb://localhost:27017')
+db              = client['library']
+app.secret_key  = 'supersecretkey' 
+login_db        = db['login']
+book_db         = db['books']
 
 @app.route('/')
 def index():
@@ -28,6 +29,7 @@ def login():
         result      = login_db.find_one({"mailid": mailid})
         
         if result and result.get('password') == password:
+            session['username'] = result['username']
             return redirect(url_for('dashboard'))
         
         else:
@@ -66,39 +68,43 @@ def register():
         return render_template('register.html')
     
     
-
-# @app.route('/dashboard', methods=['GET'])
+# @app.route('/dashboard')
 # def dashboard():
-#     return render_template('dashboard.html')
 
+#     if 'username' in session:
+
+#         user = login_db.find_one({"username": username})
+#         interests = user.get('interests', [])
+        
+#         for i  in interests:
+#             book_db.find_many({"Category":i})
+
+#         return render_template('dashboard.html', username=username, interests=interests)
+    
+#     return render_template('dashboard.html', error='session ID not found')
 
 @app.route('/dashboard')
 def dashboard():
     if 'username' in session:
         username = session['username']
-        user = book_db.find_one({'username': username})
-        user_genres = user['genres']
-
-        # Fetch books and sort them based on user genres
-        books = list(book_db.find())
-        sorted_books = sorted(books, key=lambda book: book['genre'] in user_genres, reverse=True)
-
-        return render_template('dashboard.html', username=username, books=sorted_books)
-    return redirect(url_for('login'))
-
-
-@app.route('/add_book', methods=['GET','POST'])
-def add_book():
-    if request.method == 'POST':
-        title       = request.form['title']
-        author      = request.form['author']
-        publication = request.form['publication']
-        genre       = request.form['genre']
-
-        util.enter_book(title, author, publication, genre)
+        user = login_db.find_one({"username": username})
         
-    else:
-        return render_template('add_book.html')
+        if not user:
+            return render_template('dashboard.html', error='User not found')
+
+        interests = user.get('interests', [])
+        
+        books_by_genre = {}
+        for interest in interests:
+            books_by_genre[interest] = list(book_db.find({"Category": interest}))
+
+        remaining_books = list(book_db.find({"Category": {"$nin": interests}}))
+        books_by_genre["Others"] = remaining_books
+
+        return render_template('dashboard.html', username=username, books_by_genre=books_by_genre)
+    
+    return render_template('dashboard.html', error='Session ID not found')
+
 
 
 if __name__ == '__main__':

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,12 +7,69 @@
 </head>
 <body>
     <h1>Library</h1>
-    <a href="/add_book">Add Book</a>
     <h2>Your Books</h2>
   <ul>
-    {% for book in books %}
-      <li>{{ book.title }} - {{ book.genre }}</li>
+    {% for interest in interests %}
+      <h1>{{ interest }} </h1>
     {% endfor %}
   </ul>
+
+  {% if error %}
+    <p style="color:red;">{{ error }}</p>
+  {% endif %}
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        .genre-section {
+            margin-bottom: 30px;
+        }
+        .book-container {
+            display: flex;
+            overflow-x: auto;
+        }
+        .book-card {
+            flex: 0 0 auto;
+            width: 200px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        }
+        .book-card img {
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome, {{ username }}</h1>
+
+    {% if error %}
+    <p>{{ error }}</p>
+    {% else %}
+        {% for genre, books in books_by_genre.items() %}
+        <div class="genre-section">
+            <h2>{{ genre }}</h2>
+            <div class="book-container">
+                {% for book in books %}
+                <div class="book-card">
+                    <img src="{{ book['Image_Link'] }}" alt="{{ book['Title'] }}">
+                    <h3>{{ book['Title'] }}</h3>
+                    <p>{{ book['Book_Description'][:100] }}...</p>
+                    <p><strong>Price:</strong> ${{ book['Price'] }}</p>
+                    <p><strong>Rating:</strong> {{ book['Stars'] }} Stars</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    {% endif %}
 </body>
 </html>
