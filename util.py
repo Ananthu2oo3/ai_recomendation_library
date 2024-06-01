@@ -20,3 +20,12 @@ login_db = db['login']
 
 # for interest in interests:
 #     books_by_genre[interest] = list(book_db.find({"Category": interest}))
+
+new_field = 'url'
+new_value = 'https://drive.google.com/file/d/1xFW-8MURyRc3R9cvBZswjlSMWLuM0RjR/view?usp=sharing'
+
+# Run the update_many method
+result = book_db.update_many(
+    {},  # Empty filter to match all documents
+    { '$set': { new_field: new_value } }
+)

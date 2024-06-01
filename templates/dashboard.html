@@ -60,11 +60,13 @@
             <div class="book-container">
                 {% for book in books %}
                 <div class="book-card">
+                    <a href="{{ book['url'] }}">
                     <img src="{{ book['Image_Link'] }}" alt="{{ book['Title'] }}">
                     <h3>{{ book['Title'] }}</h3>
                     <p>{{ book['Book_Description'][:100] }}...</p>
                     <p><strong>Price:</strong> ${{ book['Price'] }}</p>
                     <p><strong>Rating:</strong> {{ book['Stars'] }} Stars</p>
+                </a>
                 </div>
                 {% endfor %}
             </div>

@@ -1,7 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from pymongo import MongoClient
-from util import *
-
 
 app = Flask(__name__)
 
@@ -67,21 +65,6 @@ def register():
     else:
         return render_template('register.html')
     
-    
-# @app.route('/dashboard')
-# def dashboard():
-
-#     if 'username' in session:
-
-#         user = login_db.find_one({"username": username})
-#         interests = user.get('interests', [])
-        
-#         for i  in interests:
-#             book_db.find_many({"Category":i})
-
-#         return render_template('dashboard.html', username=username, interests=interests)
-    
-#     return render_template('dashboard.html', error='session ID not found')
 
 @app.route('/dashboard')
 def dashboard():
