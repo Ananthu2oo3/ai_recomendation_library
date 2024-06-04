@@ -9,6 +9,8 @@ app.secret_key  = 'supersecretkey'
 login_db        = db['login']
 book_db         = db['books']
 
+
+
 @app.route('/')
 def index():
     if 'username' in session:
@@ -16,6 +18,7 @@ def index():
     
     return render_template('login.html')
     
+
 
 @app.route('/login', methods=['GET','POST'])
 def login():
@@ -36,6 +39,7 @@ def login():
     
     else:
         return render_template('login.html', error='Invalid username or password')
+
 
 
 
@@ -67,6 +71,7 @@ def register():
     
 
 
+
 @app.route('/dashboard')
 def dashboard():
     if 'username' in session:
@@ -89,6 +94,8 @@ def dashboard():
     
     return render_template('dashboard.html', error='Session ID not found')
 
+
+
 @app.route('/search', methods=['GET'])
 def search():
     if 'username' not in session:
@@ -97,10 +104,9 @@ def search():
     query = request.args.get('query')
 
     if query:
-        # Search for books matching the query in the title or category
         search_results = book_db.find({"Title": {"$regex": query, "$options": "i"}})
         search_results = list(search_results)
-        
+
     else:
         search_results = []
 

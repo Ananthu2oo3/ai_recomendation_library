@@ -1,26 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library</title>
-</head>
-<body>
-    <h1>Library</h1>
-    <h2>Your Books</h2>
-  <ul>
-    {% for interest in interests %}
-      <h1>{{ interest }} </h1>
-    {% endfor %}
-  </ul>
-
-  {% if error %}
-    <p style="color:red;">{{ error }}</p>
-  {% endif %}
-
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,6 +29,7 @@
 <body>
     <h1>Welcome, {{ username }}</h1>
 
+    <align
     <form action="/search" method="GET">
         <input type="text" name="query" placeholder="Search for books...">
         <button type="submit">Search</button>
@@ -59,8 +37,9 @@
     
 
     {% if error %}
-    <p>{{ error }}</p>
+        <p>{{ error }}</p>
     {% else %}
+
         {% for genre, books in books_by_genre.items() %}
         <div class="genre-section">
             <h2>{{ genre }}</h2>
