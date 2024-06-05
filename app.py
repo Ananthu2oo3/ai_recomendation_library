@@ -74,27 +74,29 @@ def register():
 
 
 
-@app.route('/dashboard')
+@app.route('/dashboard', methods=['GET','POST'])
 def dashboard():
-    if 'username' in session:
-        username = session['username']
-        user = login_db.find_one({"username": username})
+    if request.method == 'POST':
         
-        if not user:
-            return render_template('dashboard.html', error='User not found')
+        if 'username' in session:
+            username = session['username']
+            user = login_db.find_one({"username": username})
+            
+            if not user:
+                return render_template('dashboard.html', error='User not found')
 
-        interests = user.get('interests', [])
-        
-        books_by_genre = {}
-        for interest in interests:
-            books_by_genre[interest] = list(book_db.find({"Category": interest}))
+            interests = user.get('interests', [])
+            
+            books_by_genre = {}
+            for interest in interests:
+                books_by_genre[interest] = list(book_db.find({"Category": interest}))
 
-        remaining_books = list(book_db.find({"Category": {"$nin": interests}}))
-        books_by_genre["Others"] = remaining_books
+            remaining_books = list(book_db.find({"Category": {"$nin": interests}}))
+            books_by_genre["Others"] = remaining_books
 
-        return render_template('dashboard.html', username=username, books_by_genre=books_by_genre)
-    
-    return render_template('dashboard.html', error='Session ID not found')
+            return render_template('dashboard.html', username=username, books_by_genre=books_by_genre)
+    else:
+        return render_template('dashboard.html', error='Session ID not found')
 
 
 
