@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from pymongo import MongoClient
 
+
 app = Flask(__name__)
 
 client          = MongoClient('mongodb://localhost:27017')
@@ -8,6 +9,7 @@ db              = client['library']
 app.secret_key  = 'supersecretkey' 
 login_db        = db['login']
 book_db         = db['books']
+history_db      = db['history']
 
 
 
@@ -104,8 +106,16 @@ def search():
     query = request.args.get('query')
 
     if query:
+        
         search_results = book_db.find({"Title": {"$regex": query, "$options": "i"}})
         search_results = list(search_results)
+        
+        query_data={
+            'username'  : session['username'],
+            'query'     : query,
+            'result'    : search_results
+        }
+        history_db.insert_one(query_data)
 
     else:
         search_results = []
