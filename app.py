@@ -13,6 +13,7 @@ history_db      = db['history']
 
 
 
+
 @app.route('/')
 def index():
     if 'username' in session:
@@ -20,6 +21,7 @@ def index():
     
     return render_template('login.html')
     
+
 
 
 @app.route('/login', methods=['GET','POST'])
@@ -40,7 +42,7 @@ def login():
             return render_template('login.html', error=error)
     
     else:
-        return render_template('login.html', error='Invalid username or password')
+        return render_template('login.html')
 
 
 
@@ -74,29 +76,28 @@ def register():
 
 
 
-@app.route('/dashboard', methods=['GET','POST'])
+@app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
-    if request.method == 'POST':
-        
-        if 'username' in session:
-            username = session['username']
-            user = login_db.find_one({"username": username})
-            
-            if not user:
-                return render_template('dashboard.html', error='User not found')
+    if 'username' not in session:
+        return redirect(url_for('login'))
 
-            interests = user.get('interests', [])
-            
-            books_by_genre = {}
-            for interest in interests:
-                books_by_genre[interest] = list(book_db.find({"Category": interest}))
+    username = session['username']
+    user = login_db.find_one({"username": username})
 
-            remaining_books = list(book_db.find({"Category": {"$nin": interests}}))
-            books_by_genre["Others"] = remaining_books
+    if not user:
+        return render_template('dashboard.html', error='User not found')
 
-            return render_template('dashboard.html', username=username, books_by_genre=books_by_genre)
-    else:
-        return render_template('dashboard.html', error='Session ID not found')
+    interests = user.get('interests', [])
+    
+    books_by_genre = {}
+    for interest in interests:
+        books_by_genre[interest] = list(book_db.find({"Category": interest}))
+
+    remaining_books = list(book_db.find({"Category": {"$nin": interests}}))
+    books_by_genre["Others"] = remaining_books
+
+    return render_template('dashboard.html', username=username, books_by_genre=books_by_genre)
+
 
 
 

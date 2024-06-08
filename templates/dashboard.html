@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/styles/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <title>Dashboard</title>
-
 </head>
 <body>
     <h1>Welcome, {{ username }}</h1>
@@ -14,6 +14,7 @@
         <input type="text" name="query" placeholder="Search for books...">
         <button type="submit">Search</button>
     </form>
+
 
     {% if error %}
         <p>{{ error }}</p>
@@ -24,26 +25,24 @@
             <div class="book-container">
                 {% for book in books %}
                 <div class="book-card">
-                    <a href="{{ book['url'] }}">
-                        <img src="{{ book['Image_Link'] }}" alt="{{ book['Title'] }}">
-                        <h3>{{ book['Title'] }}</h3>
-                        <p>{{ book['Book_Description'][:100] }}...</p>
-                        <p><strong>Price:</strong> ${{ book['Price'] }}</p>
-                        <p><strong>Rating:</strong> {{ book['Stars'] }} Stars</p>
-                        
-                        <div class="rating">
-                            <input type="radio" id="star5" name="rating" value="5">
-                            <label for="star5"></label>
-                            <input type="radio" id="star4" name="rating" value="4">
-                            <label for="star4"></label>
-                            <input type="radio" id="star3" name="rating" value="3">
-                            <label for="star3"></label>
-                            <input type="radio" id="star2" name="rating" value="2">
-                            <label for="star2"></label>
-                            <input type="radio" id="star1" name="rating" value="1">
-                            <label for="star1"></label>
-                        </div>
-                    </a>
+                    <center>
+                        <a href="{{ book['url'] }}">
+
+                            <img src="{{ book['Image_Link'] }}" alt="{{ book['Title'] }}">
+                            <h3>{{ book['Title'] }}</h3>
+                            <br>
+                            <p>RS.{{ book['Price'] }}</p>
+
+                            <div class="star-rating" data-stars="{{ book['Stars'] }}">
+                                <span class="star">&#9733;</span>
+                                <span class="star">&#9733;</span>
+                                <span class="star">&#9733;</span>
+                                <span class="star">&#9733;</span>
+                                <span class="star">&#9733;</span>
+                            </div>
+                            
+                        </a>
+                    </center>
                 </div>
                 {% endfor %}
             </div>
@@ -52,3 +51,4 @@
     {% endif %}
 </body>
 </html>
+
