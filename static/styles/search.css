@@ -52,18 +52,18 @@ button:hover {
 
 .book-container {
     display: flex;
-    overflow-x: auto;
+    flex-wrap: wrap; /* Allow cards to wrap */
+    justify-content: center; /* Center cards horizontally */
+    padding: 20px; /* Add padding to the container */
 }
 
 .book-card {
-    flex: 0 0 auto;
     width: 250px; 
     height: 410px; 
     border-radius: 30px;
     background: #e0e0e0;
     box-shadow: 15px 15px 30px #bebebe, -15px -15px 30px #ffffff;
     padding: 10px;
-    box-sizing: border-box;
     margin-right: 20px;
     margin-bottom: 20px;
     padding-top: 16px; 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <link rel="stylesheet" href="/static/styles/search.css">
     <title>Search Results</title>
     
 </head>
@@ -13,15 +13,26 @@
     <div class="book-container">
         {% if search_results %}
             {% for book in search_results %}
-            <li class="book-card">
-                <a href="{{ book['url'] }}">
-                    <img src="{{ book['Image_Link'] }}" alt="{{ book['Title'] }}">
-                    <h3>{{ book['Title'] }}</h3>
-                    <p>{{ book['Book_Description'][:100] }}...</p>
-                    <p><strong>Price:</strong> ${{ book['Price'] }}</p>
-                    <p><strong>Rating:</strong> {{ book['Stars'] }} Stars</p>
-                </a>
-            </li>
+            <div class="book-card">
+                <center>
+                    <a href="{{ book['url'] }}">
+
+                        <img src="{{ book['Image_Link'] }}" alt="{{ book['Title'] }}">
+                        <h3>{{ book['Title'] }}</h3>
+                        <br>
+                        <p>RS.{{ book['Price'] }}</p>
+
+                        <div class="star-rating" data-stars="{{ book['Stars'] }}">
+                            <span class="star">&#9733;</span>
+                            <span class="star">&#9733;</span>
+                            <span class="star">&#9733;</span>
+                            <span class="star">&#9733;</span>
+                            <span class="star">&#9733;</span>
+                        </div>
+                        
+                    </a>
+                </center>
+            </div>
             {% endfor %}
         {% else %}
             <p>No results found for "{{ query }}"</p>
