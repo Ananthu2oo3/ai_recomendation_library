@@ -26,8 +26,8 @@
                 {% for book in books %}
                 <div class="book-card">
                     <center>
-                        <a href="{{ book['url'] }}">
-
+                        <!-- <a href="{{ book['url'] }}"> -->
+                            <a href="book/{{book['_id']}}">
                             <img src="{{ book['Image_Link'] }}" alt="{{ book['Title'] }}">
                             <h3>{{ book['Title'] }}</h3>
                             <br>

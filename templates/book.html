@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles/book.css">
+    <title>{{ book.get('Title', 'No Title') }}</title>
+</head>
+<body>
+    <div class="container">
+        <img src="{{ book.get('Image_Link', '') }}" alt="{{ book.get('Title', 'No Image') }}">
+        <div class="content">
+            <h1>{{ book.get('Title', 'No Title') }}</h1>
+            <p class="description">{{ book.get('Book_Description', 'N/A') }}</p>
+            <p class="price">RS. {{ book.get('Price', 'N/A') }}</p>
+            <div class="star-rating" data-stars="{{ book['Stars'] }}">
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

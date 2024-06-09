@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from pymongo import MongoClient
+from bson.objectid import ObjectId
 
 
 app = Flask(__name__)
@@ -124,6 +125,21 @@ def search():
         search_results = []
 
     return render_template('search_results.html', query=query, search_results=search_results)
+
+
+
+
+
+@app.route('/book/<string:_id>', methods=['GET'])
+def book_details(_id):
+    
+    book = book_db.find_one({"_id": ObjectId(_id)})
+    
+    if book:
+        return render_template('book.html', book=book)
+    else:
+        return "Book not found", 404
+
 
 
 if __name__ == '__main__':
