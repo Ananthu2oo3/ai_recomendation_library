@@ -1,0 +1,97 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: url('/static/images/dashboard.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    position: relative;
+    z-index: 1;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: -100px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7); 
+    z-index: -1;
+}
+
+h1 {
+    margin-left: 20px;
+    font-size: 45px;
+    color: #ffffff;
+}
+
+h2 {
+    margin-left: 30px;
+    font-size: 33px;
+    color: #ffffff;
+}
+
+form {
+    text-align: right;
+    margin-top: -70px;
+    margin-right: 50px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #007bff; 
+    color: #fff;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3; 
+}
+
+.genre-section {
+    margin-bottom: 30px;
+}
+
+.book-container {
+    display: flex;
+    overflow-x: auto;
+    padding-left: 30px;
+}
+
+.book-item {
+    flex: 0 0 auto;
+    width: 220px; /* Set a fixed width for each book item */
+    margin-right: 45px; /* Set margin between book items */
+    text-align: center;
+    color: #ffffff;
+}
+
+
+.book-item img {
+    width: auto; /* Change width to auto */
+    height: 300px; /* Set a fixed height */
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.book-item img:hover {
+    transform: scale(1.05);
+}
+
+.book-item h3 {
+    margin: 10px 0 0;
+    font-size: 1rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding-bottom: 20px;
+    color: #ffffff;
+}

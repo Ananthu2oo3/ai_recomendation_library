@@ -1,34 +1,104 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles/register.css">
+    <title>Login</title>
+</head>
+<body>
+    <div class="container">
+        <div class="heading">Register</div>
+        <form action="/register" method="post" class="form">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required class="input">
+            
+            <label for="mailid">Mail ID:</label>
+            <input type="email" id="mailid" name="mailid" required class="input">
+            
+            <label for="phn_no">Phone Number:</label>
+            <input type="tel" id="phn_no" name="phn_no" required class="input">
+            
+            <input type="checkbox" name="interests" value="Poetry" id="Poetry">
+            <label for="Poetry"> Poetry</label><br>
+            
+            <input type="checkbox" name="interests" value="History" id="History">
+            <label for="History"> Historical</label><br>
+            
+            <input type="checkbox" name="interests" value="Fiction" id="Fiction">
+            <label for="Fiction"> Fiction</label><br>
+            
+            <input type="checkbox" name="interests" value="Mystery" id="Mystery">
+            <label for="Mystery"> Mystery</label><br>
+            
+            <input type="checkbox" name="interests" value="Science Fiction" id="ScienceFiction">
+            <label for="ScienceFiction"> Science Fiction</label><br>
+            
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required class="input">
+            
+            <button type="submit" class="login-button">Submit</button>
+        </form>
+    </div>
+</body>
+</html> -->
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles/register.css">
     <title>Login</title>
 </head>
 <body>
-    <h1>Register Page</h1>
-    <form action="/register" method="post">
-
-        <label for="username">Username</label>
-        <input type="text" id="username" name="username" required><br>
-
-        <label for="mailid">Mail ID:</label>
-        <input type="mailid" id="mailid" name="mailid" required><br>
-
-        <label for="phn_no">Phone Number:</label>
-        <input type="phn_no" id="phn_no" name="phn_no" required><br>
+    <div class="container">
+        <div class="heading">Register</div>
+        <form action="/register" method="post" class="form">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required class="input">
             
-        <input type="checkbox" name="interests" value="Poetry"> Poetry<br>
-        <input type="checkbox" name="interests" value="History"> Historical<br>
-        <input type="checkbox" name="interests" value="Fiction"> Fiction<br>
-        <input type="checkbox" name="interests" value="Mystery"> Mystery<br>
-        <input type="checkbox" name="interests" value="Science Fiction"> Science Fiction<br>
+            <label for="mailid">Mail ID:</label>
+            <input type="email" id="mailid" name="mailid" required class="input">
+            
+            <label for="phn_no">Phone Number:</label>
+            <input type="tel" id="phn_no" name="phn_no" required class="input">
+            <br><br>
+            
+            <div class="interests">
+                
+                <input type="checkbox" name="interests" value="History" id="History">
+                <label for="History"> Historical</label><br>
+                
+                <input type="checkbox" name="interests" value="Fiction" id="Fiction">
+                <label for="Fiction"> Fiction</label><br>
+                
+                <input type="checkbox" name="interests" value="Mystery" id="Mystery">
+                <label for="Mystery"> Mystery</label><br>
+                
+                <input type="checkbox" name="interests" value="Science Fiction" id="ScienceFiction">
+                <label for="ScienceFiction"> Science Fiction</label><br>
 
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" required><br>
+                <input type="checkbox" name="interests" value="Crime" id="Crime">
+                <label for="Crime"> Crime</label><br>
 
-        <button type="submit">Submit</button>
+                <input type="checkbox" name="interests" value="Business" id="Business">
+                <label for="Business"> Business</label><br>
 
-    </form>
+                <input type="checkbox" name="interests" value="Thriller" id="Thriller">
+                <label for="Thriller"> Thriller</label><br>
+
+                <input type="checkbox" name="interests" value="Romance" id="Romance">
+                <label for="Romance"> Romance</label><br>
+            </div>
+            
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required class="input">
+            
+            <button type="submit" class="login-button">Submit</button>
+        </form>
+    </div>
 </body>
-</html> 
+</html>
+

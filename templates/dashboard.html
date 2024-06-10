@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/styles/styles.css">
+    <link rel="stylesheet" href="/static/styles/dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <title>Dashboard</title>
 </head>
@@ -15,7 +15,6 @@
         <button type="submit">Search</button>
     </form>
 
-
     {% if error %}
         <p>{{ error }}</p>
     {% else %}
@@ -24,25 +23,11 @@
             <h2>{{ genre }}</h2>
             <div class="book-container">
                 {% for book in books %}
-                <div class="book-card">
-                    <center>
-                        <!-- <a href="{{ book['url'] }}"> -->
-                            <a href="book/{{book['_id']}}">
-                            <img src="{{ book['Image_Link'] }}" alt="{{ book['Title'] }}">
-                            <h3>{{ book['Title'] }}</h3>
-                            <br>
-                            <p>RS.{{ book['Price'] }}</p>
-
-                            <div class="star-rating" data-stars="{{ book['Stars'] }}">
-                                <span class="star">&#9733;</span>
-                                <span class="star">&#9733;</span>
-                                <span class="star">&#9733;</span>
-                                <span class="star">&#9733;</span>
-                                <span class="star">&#9733;</span>
-                            </div>
-                            
-                        </a>
-                    </center>
+                <div class="book-item">
+                    <a href="book/{{book['_id']}}">
+                        <img src="{{ book['Image_Link'] }}" alt="{{ book['Title'] }}">
+                        <h3>{{ book['Title'] }}</h3>
+                    </a>
                 </div>
                 {% endfor %}
             </div>
@@ -51,4 +36,3 @@
     {% endif %}
 </body>
 </html>
-

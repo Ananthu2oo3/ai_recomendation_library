@@ -1,0 +1,98 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: url('/static/images/lib.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.container {
+    width: 500px; /* Increased width */
+    margin: 20px auto; /* Center the container */
+    padding: 40px; /* Increased padding */
+    background: #ebd1b4;
+    border-radius: 40px;
+    border: 5px solid rgb(255, 255, 255);
+    box-shadow: rgba(205, 159, 103, 0.878) 0px 30px 30px -20px;
+}
+
+.heading {
+    text-align: center;
+    font-weight: 900;
+    font-size: 35px; /* Increased from 30px */
+    color: rgb(169, 104, 0); /* Darker shade of blue */
+}
+
+.form {
+    margin-top: 25px;
+}
+
+.form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form .input {
+    width: 90%;
+    background: white;
+    border: none;
+    padding: 10px 15px; /* Increased padding */
+    border-radius: 20px;
+    margin-top: 5px; /* Increased margin */
+    box-shadow: rgba(205, 159, 103, 0.878) 0px 30px 30px -20px;
+    border-inline: 2px solid transparent;
+}
+
+.interests {
+    margin-bottom: 10px;
+    display: flex; /* Use flexbox */
+    flex-wrap: wrap; /* Allow wrapping if the buttons exceed container width */
+}
+
+.interests input[type="checkbox"] {
+    display: none; 
+}
+
+
+.interests input[type="checkbox"] + label {
+    display: inline-block;
+    background-color: #c88059;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.interests input[type="checkbox"]:checked + label {
+    background-color: #bd081c;
+    color: #fff;
+}
+
+
+.form .login-button {
+    display: block;
+    width: 100%;
+    font-weight: bold;
+    background: linear-gradient(45deg, rgb(169, 104, 0) 0%, rgb(160, 82, 10) 100%);
+    color: white;
+    padding-block: 20px; /* Increased padding */
+    margin: 25px auto; /* Increased margin */
+    border-radius: 20px;
+    box-shadow: rgba(205, 159, 103, 0.878) 0px 20px 10px -15px;
+    border: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.form .login-button:hover {
+    transform: scale(1.05); /* Increased scale effect */
+    box-shadow: rgba(205, 159, 103, 0.878) 0px 23px 10px -20px;
+}
+
+.form .login-button:active {
+    transform: scale(0.95);
+    box-shadow: rgba(205, 159, 103, 0.878) 0px 15px 10px -10px;
+}
