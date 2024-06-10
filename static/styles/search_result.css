@@ -1,22 +1,9 @@
+/* Hide scrollbar */
 ::-webkit-scrollbar {
-    width: 8px; 
+    display: none;
 }
 
-::-webkit-scrollbar-track {
-    background: transparent; 
-}
-
-::-webkit-scrollbar-thumb {
-    background: #e57631; 
-    border-radius: 10px; 
-    width: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #e57631; 
-}
-
-
+/* Body styles */
 body {
     margin: 0;
     padding: 0;
@@ -25,8 +12,10 @@ body {
     font-family: Arial, sans-serif;
     position: relative;
     z-index: 1;
+    overflow-y: hidden; /* Hide vertical scrollbar */
 }
 
+/* Background overlay */
 body::before {
     content: "";
     position: fixed;
@@ -38,6 +27,7 @@ body::before {
     z-index: -1;
 }
 
+/* Heading styles */
 h1 {
     margin-left: 20px;
     font-size: 45px;
@@ -50,6 +40,7 @@ h2 {
     color: #ffffff;
 }
 
+/* Form styles */
 form {
     text-align: right;
     margin-top: -70px;
@@ -75,10 +66,12 @@ button:hover {
     background-color: #0056b3; 
 }
 
+/* Genre section styles */
 .genre-section {
     margin-bottom: 30px;
 }
 
+/* Book container styles */
 .book-container {
     display: flex;
     overflow-x: auto;
@@ -92,7 +85,6 @@ button:hover {
     text-align: center;
     color: #ffffff;
 }
-
 
 .book-item img {
     width: auto; /* Change width to auto */

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/styles/search.css">
+    <link rel="stylesheet" href="/static/styles/search_result.css">
     <title>Search Results</title>
 </head>
 <body>
@@ -15,17 +15,11 @@
             <div class="book-card">
                 <center>
                     <a href="/book/{{ book['_id'] }}">
-                        <img src="{{ book['Image_Link'] }}" alt="{{ book['Title'] }}">
-                        <h3>{{ book['Title'] }}</h3>
-                        <br>
-                        <p>RS.{{ book['Price'] }}</p>
-
-                        <div class="star-rating" data-stars="{{ book['Stars'] }}">
-                            <span class="star">&#9733;</span>
-                            <span class="star">&#9733;</span>
-                            <span class="star">&#9733;</span>
-                            <span class="star">&#9733;</span>
-                            <span class="star">&#9733;</span>
+                        <div class="book-item">
+                            <a href="book/{{book['_id']}}">
+                                <img src="{{ book['Image_Link'] }}" alt="{{ book['Title'] }}">
+                                <h3>{{ book['Title'] }}</h3>
+                            </a>
                         </div>
                     </a>
                 </center>

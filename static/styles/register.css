@@ -9,9 +9,9 @@ body {
 }
 
 .container {
-    width: 500px; /* Increased width */
-    margin: 20px auto; /* Center the container */
-    padding: 40px; /* Increased padding */
+    width: 500px; 
+    margin: 20px auto; 
+    padding: 40px; 
     background: #ebd1b4;
     border-radius: 40px;
     border: 5px solid rgb(255, 255, 255);
@@ -21,8 +21,8 @@ body {
 .heading {
     text-align: center;
     font-weight: 900;
-    font-size: 35px; /* Increased from 30px */
-    color: rgb(169, 104, 0); /* Darker shade of blue */
+    font-size: 35px; 
+    color: rgb(169, 104, 0); 
 }
 
 .form {
@@ -38,17 +38,17 @@ body {
     width: 90%;
     background: white;
     border: none;
-    padding: 10px 15px; /* Increased padding */
+    padding: 10px 15px; 
     border-radius: 20px;
-    margin-top: 5px; /* Increased margin */
+    margin-top: 5px; 
     box-shadow: rgba(205, 159, 103, 0.878) 0px 30px 30px -20px;
     border-inline: 2px solid transparent;
 }
 
 .interests {
     margin-bottom: 10px;
-    display: flex; /* Use flexbox */
-    flex-wrap: wrap; /* Allow wrapping if the buttons exceed container width */
+    display: flex; 
+    flex-wrap: wrap; 
 }
 
 .interests input[type="checkbox"] {
@@ -79,8 +79,8 @@ body {
     font-weight: bold;
     background: linear-gradient(45deg, rgb(169, 104, 0) 0%, rgb(160, 82, 10) 100%);
     color: white;
-    padding-block: 20px; /* Increased padding */
-    margin: 25px auto; /* Increased margin */
+    padding-block: 20px; 
+    margin: 25px auto;     
     border-radius: 20px;
     box-shadow: rgba(205, 159, 103, 0.878) 0px 20px 10px -15px;
     border: none;
@@ -88,7 +88,7 @@ body {
 }
 
 .form .login-button:hover {
-    transform: scale(1.05); /* Increased scale effect */
+    transform: scale(1.05); 
     box-shadow: rgba(205, 159, 103, 0.878) 0px 23px 10px -20px;
 }
 
