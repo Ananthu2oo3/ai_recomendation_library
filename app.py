@@ -20,7 +20,7 @@ def index():
     if 'username' in session:
         return redirect(url_for('dashboard'))
     
-    return render_template('login.html')
+    return redirect(url_for('login'))
     
 
 
